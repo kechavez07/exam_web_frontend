@@ -45,9 +45,10 @@ function App() {
         <div className="card">
           <div className="card-info">
             <h2>{toy.name}</h2>
-            <p>{toy.description}</p>
             <p>Precio: {toy.price}</p>
             <p>Stock: {toy.stock}</p>
+            <p>Mark: {toy.mark}</p>
+            <p>Category: {toy.category}</p>
           </div>
           <div className="card-image">
             <Card2 />
