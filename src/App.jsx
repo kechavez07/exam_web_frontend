@@ -1,35 +1,63 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Card2 from '../../../web/web_avanzada/Panes-de-la-Rumi-ahui/panes-de-la-ruminahui-v2/src/components/card/Card2';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [toyId, setToyId] = useState('');
+  const [toy, setToy] = useState(null);
+
+  const handleFetchToy = () => {
+    if (!toyId) return;
+
+    fetch(`https://exam-web-backend.onrender.com/toy/${toyId}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setToy(data);
+      })
+      .catch(err => console.error(err));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
+    <div className="App">
+      <nav className="nav">
+        <div className="menu-icon">☰</div>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
+      </nav>
+
+      <h1>stock</h1>
+
+      <div className="search-container">
+        <input 
+          type="text" 
+          placeholder="Ingresa el ID del juguete"
+          value={toyId}
+          onChange={(e) => setToyId(e.target.value)}
+        />
+        <button onClick={handleFetchToy}>Buscar</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      
+      {toy && (
+        <div className="card">
+          <div className="card-info">
+            <h2>{toy.name}</h2>
+            <p>{toy.description}</p>
+            <p>Precio: {toy.price}</p>
+            <p>Stock: {toy.stock}</p>
+          </div>
+          <div className="card-image">
+            <Card2 />
+          </div>
+        </div>
+      )}
+
+      
+    </div>
+  );
 }
 
-export default App
+export default App;
