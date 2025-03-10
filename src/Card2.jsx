@@ -1,16 +1,10 @@
 import React from "react";
 import './Card2.css'
-import ImageDinamic from "../loader/ImageDinamic";
 
-const Card2 = () => {
-    
+const Card2 = (props) => {
     return (
         <>
-            <div class="card2">
-            <div class="card-image-container">
-                <ImageDinamic/>
-            </div>
-            </div>
+            <div class="image-loader"></div>
         </>
     )
 }

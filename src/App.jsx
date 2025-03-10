@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
-import Card2 from '../../../web/web_avanzada/Panes-de-la-Rumi-ahui/panes-de-la-ruminahui-v2/src/components/card/Card2';
+import Card2 from './Card2.jsx';
 
 function App() {
   const [toyId, setToyId] = useState('');
